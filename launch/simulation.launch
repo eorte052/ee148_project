@@ -1,0 +1,7 @@
+<launch>
+<arg name="world_name" default="$(find ee148_project)/worlds/car_world.world"/>
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+</include>
+<!--Add the car model here-->
+</launch>
