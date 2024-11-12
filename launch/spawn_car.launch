@@ -1,0 +1,7 @@
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find ee148_project)/urdf/car.urdf.xacro'" />
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model simple_ackermann_car" output="screen" />
+</launch>
