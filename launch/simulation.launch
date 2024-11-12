@@ -1,7 +1,15 @@
 <launch>
-<arg name="world_name" default="$(find ee148_project)/worlds/car_world.world"/>
-<include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <!-- Argument to specify the world file -->
+  <arg name="world_name" default="$(find ee148_project)/worlds/car_world.world"/>
+
+  <!-- Launch Gazebo with the specified world file -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(arg world_name)"/>
-</include>
-<!--Add the car model here-->
+  </include>
+
+  <!-- Spawn the car model -->
+
+
+  <!-- Load the car's URDF file into the robot_description parameter -->
+
 </launch>
