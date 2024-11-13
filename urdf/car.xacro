@@ -24,12 +24,12 @@
   <xacro:property name="I_wheel" value="${(1.0/12.0) * wheel_mass * (3.0 * wheel_link_radius*wheel_link_radius+wheel_link_length*wheel_link_length)}"/>
 
   
-  <xacro:macro name="interia_wheel">
-        <intertial>
+  <xacro:macro name="inertia_wheel">
+        <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="${wheel_mass}"/>
-        <interia ixx="${I_wheel}" ixy="0.0" ixz="0.0" iyy="${I_wheel}" iyz="0" izz="${Iz_wheel}"/>
-        </intertial>
+        <inertia ixx="${I_wheel}" ixy="0.0" ixz="0.0" iyy="${I_wheel}" iyz="0" izz="${Iz_wheel}"/>
+        </inertial>
   </xacro:macro>
 
   <xacro:include filename="$(find ee148_project)/urdf/robot.gazebo"/>
@@ -60,7 +60,7 @@
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <mass value="${body_mass}"/>
-            <intertia 
+            <inertia 
             ixx="${(1/12) * body_mass*(body_link_y_dim*body_link_y_dim+body_link_z_dim*body_link_z_dim)}" ixy="0"
             ixz="0" iyy="${(1/12)*body_mass*(body_link_x_dim*body_link_x_dim+body_link_z_dim*body_link_z_dim)}"
             iyz="0"
@@ -94,7 +94,7 @@
                 </geometry>
         </collision>
 
-        <xacro:interia_wheel />
+        <xacro:inertia_wheel />
 </link>
 
 <!-- Back left wheen and joint-->
@@ -124,7 +124,7 @@
                 </geometry>
         </collision>
 
-        <xacro:interia_wheel />
+        <xacro:inertia_wheel />
 </link>
 
 <!--Front right wheel and joint-->
@@ -153,7 +153,7 @@
                 </geometry>
         </collision>
 
-        <xacro:interia_wheel />
+        <xacro:inertia_wheel />
 </link>
 
 <!--Front left wheel and joint-->
@@ -182,6 +182,6 @@
                 </geometry>
         </collision>
 
-        <xacro:interia_wheel />
+        <xacro:inertia_wheel />
 </link>
 </robot>
