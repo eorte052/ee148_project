@@ -1,2 +1,2 @@
 Current env
-<img width="793" alt="simulator_env" src="https://github.com/user-attachments/assets/00dc888a-6ffa-4e52-9307-d616d7bbd24e">
+<img width="658" alt="Screen Shot 2024-11-12 at 5 55 02 PM" src="https://github.com/user-attachments/assets/27655350-5b1b-4ea8-9836-af51ba99580c">
