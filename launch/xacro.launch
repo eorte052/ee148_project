@@ -1,7 +1,10 @@
 <?xml version="1.0" ?>
 <launch>
+  <arg name="world_name" default="$(find ee148_project)/worlds/car_world.world"/>
+
   <!-- Launch Gazebo with the specified world file -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
@@ -10,13 +13,24 @@
   </include>
 
   <!-- Load the robot description -->
-    <param name="robot_description" command="$(find xacro)/xacro '$(find ee148_project)/urdf/car.xacro'"/>
-  <!--Robot state publisher node-->
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(find ee148_project)/urdf/car.urdf.xacro'"/>
 
-  <!--Spawn the model-->
+  <!-- Joint State Publisher node -->
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen"/>
+
+
+
+
+  <!-- Robot State Publisher node -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+
+  <!-- Spawn the model in Gazebo -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-  args="-urdf -model robot_model -param robot_description" />
+        args="-urdf -model robot_model -param robot_description" />
 
+  <!-- Start RViz with a default configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ee148_project)/config/config.rviz" required="true" output="screen"/>
 
 </launch>
+

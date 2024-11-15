@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="simple_ackermann_car">
-  
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+  <xacro:include filename="$(find ee148_project)/urdf/gazebo_control.xacro" />
+
+<material name = "yellow">
+        <color rgba = "1 1 0 1" />
+ </material>
+ <material name = "red">
+        <color rgba = "1 0 0 1" />
+ </material>
+
+
   <!-- Define parameters for size and position -->
   <xacro:property name="body_link_x_dim" value="1.0" />
   <xacro:property name="body_link_y_dim" value="0.6" />
@@ -32,23 +41,27 @@
         </inertial>
   </xacro:macro>
 
-  <xacro:include filename="$(find ee148_project)/urdf/robot.gazebo"/>
+  <!--xacro:include filename="$(find ee148_project)/urdf/gazebo_control.xacro"-/ -->
 
 
-  <link name = "dummy">
+  <link name = "base_link">
   </link>
-  <joint name="dummy joint" type="fixed">
-        <parent link="dummy"/>
-        <child link="body_link"/>
-  </joint>
 
   <!--BODY LINK-->
+<joint name="body_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="body_link"/>
+        <origin xyz = "0 0 0.35"/>
+</joint>
+
 <link name="body_link">
+
   <visual>
           <geometry>
                 <box size="${body_link_x_dim} ${body_link_y_dim} ${body_link_z_dim}" />
           </geometry>
           <origin rpy="0 0 0" xyz="0 0 0"/>
+          <material name = "red"/>
   </visual>
 
   <collision>
@@ -67,6 +80,9 @@
             izz="${(1/12)*body_mass*(body_link_y_dim*body_link_y_dim+body_link_x_dim*body_link_x_dim)}" />
         </inertial>
 </link>
+    <gazebo reference="body_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
 
 <!-- Back right wheel and joint-->
 <joint name ="wheel1_joint" type="continuous" >
@@ -84,6 +100,7 @@
             <geometry>
                 <cylinder length="${wheel_link_length}" radius="${wheel_link_radius}" />
             </geometry>
+            <material name = "yellow"/>
         </visual>
 
 
@@ -96,6 +113,9 @@
 
         <xacro:inertia_wheel />
 </link>
+    <gazebo reference="wheel1_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
 
 <!-- Back left wheen and joint-->
 
@@ -114,6 +134,7 @@
             <geometry>
                 <cylinder length="${wheel_link_length}" radius="${wheel_link_radius}" />
             </geometry>
+            <material name = "yellow"/>
         </visual>
 
 
@@ -126,6 +147,9 @@
 
         <xacro:inertia_wheel />
 </link>
+    <gazebo reference="wheel2_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
 
 <!--Front right wheel and joint-->
 <joint name ="wheel3_joint" type="continuous" >
@@ -143,6 +167,7 @@
             <geometry>
                 <cylinder length="${wheel_link_length}" radius="${wheel_link_radius}" />
             </geometry>
+            <material name = "yellow"/>
         </visual>
 
 
@@ -155,6 +180,9 @@
 
         <xacro:inertia_wheel />
 </link>
+    <gazebo reference="wheel3_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
 
 <!--Front left wheel and joint-->
 <joint name ="wheel4_joint" type="continuous" >
@@ -172,6 +200,7 @@
             <geometry>
                 <cylinder length="${wheel_link_length}" radius="${wheel_link_radius}" />
             </geometry>
+            <material name = "yellow"/>
         </visual>
 
 
@@ -184,4 +213,7 @@
 
         <xacro:inertia_wheel />
 </link>
+    <gazebo reference="wheel4_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
 </robot>
