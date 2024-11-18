@@ -5,13 +5,15 @@
     <gazebo>
         <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 
+            <updateRate>100.0</updateRate>
             <!-- Wheel Information -->
             <leftFrontJoint>wheel4_joint</leftFrontJoint>
             <rightFrontJoint>wheel3_joint</rightFrontJoint>
             <leftRearJoint>wheel2_joint</leftRearJoint>
             <rightRearJoint>wheel1_joint</rightRearJoint>
-            <wheelSeparation>0.297</wheelSeparation>
-            <wheelDiameter>0.066</wheelDiameter>
+            <wheelSeparation>0.7</wheelSeparation>
+            <wheelDiameter>0.3</wheelDiameter>
+            <torque>1000</torque>
 
 
         <!-- Command and Odometry Topics -->
@@ -22,7 +24,10 @@
             <!-- Transform Parameters -->
             <robotBaseFrame>base_link</robotBaseFrame>
             <broadcastTF>true</broadcastTF>
-            <publishOdomTf>true</publishOdomTf>
+            <publishOdom>true</publishOdom>
+            <publishWheelTF>true</publishWheelTF>
+
+            <publishWheelJointState>true</publishWheelJointState>
 
 
             <covariance_x>0.0001</covariance_x>
